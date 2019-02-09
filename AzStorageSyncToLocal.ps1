@@ -48,11 +48,12 @@ $context = New-AzStorageContext -StorageAccountName $storage -SasToken $sastoken
 $blobs = $context | Get-AzStorageBlob -Container $container -Blob $filefilter
 
 $blobs | ForEach-Object {
-   $test = [datetime]$cache.lastruntime.value
-   if($_.LastModified.UtcDateTime -ge $test){
-       Write-Host $_.Name
-       Get-AzStorageBlobContent -Blob $_ -Destination $localsyncpath
-   }
+    $lastrun = [datetime]$cache.lastruntime.value
+    if($_.LastModified.UtcDateTime -lt $lastrun){
+       Write-Log "Start : Copying the file - $($_.Name)" "INFO"
+       $context | Get-AzStorageBlobContent -Container $container -Blob $_.Name -Destination $localsyncpath
+       Write-Log "Complete : Copying the file - $($_.Name)" "INFO"
+    }
 }
 $cache.lastruntime = Get-Date
 $cache | ConvertTo-Json | Set-Content -Path './.appdata/runcache'
