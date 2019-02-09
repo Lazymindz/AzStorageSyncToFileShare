@@ -1,3 +1,4 @@
-.appdata/*
-Output/*
-logs/*
+.appdata/
+Output/
+logs/
+.DS_STORE
