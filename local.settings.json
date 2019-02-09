@@ -1,0 +1,14 @@
+{
+    "storage":{
+        "account":"sivafssync",
+        "container":"backups",
+        "saskey":"?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-02-09T19:06:01Z&st=2019-02-09T11:06:01Z&spr=https&sig=aCsdf5KedUr%2BmIyORONA0tpWLVxBS%2BqyASUoLlYVt9s%3D"
+    },
+    "localsyncpath":"./Output",
+    "filefilter":"",
+    "log":{
+        "logFile": "./logs/filesync.log",
+        "logLevel": "DEBUG",
+        "logCount": 10
+    }
+}
